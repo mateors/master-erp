@@ -53,10 +53,10 @@ type Contact struct {
 
 //Address ...
 type Address struct {
-	AccountID   int64  `json:"account_id"` //foreign_key
 	ID          string `json:"aid"`
 	Type        string `json:"type"`
-	CompanyID   string `json:"cid"` //foreign key
+	CompanyID   string `json:"cid"`        //foreign key
+	AccountID   int64  `json:"account_id"` //foreign_key
 	Serial      int64  `json:"serial"`
 	AddressID   string `json:"address_id"`
 	AddressType string `json:"address_type"` //billing,shipping
@@ -73,9 +73,9 @@ type Address struct {
 type Account struct {
 	//ContactInfo []Contact `json:"contact_info,omitempty"`
 	ID          string `json:"aid"`
-	ParentID    string `json:"parent_id,omitempty"`
 	Type        string `json:"type"` //account
 	CompanyID   string `json:"cid"`  //foreign key
+	ParentID    string `json:"parent_id,omitempty"`
 	AccountID   int64  `json:"account_id"`
 	AccountType string `json:"account_type"` //vendor,supplier,customer,consumer
 	AccountName string `json:"account_name"`
@@ -94,9 +94,9 @@ type Account struct {
 //ActivityLog ***
 type ActivityLog struct {
 	ID           string `json:"aid"`
-	LogID        int64  `json:"logid"`
 	Type         string `json:"type"`
 	CompanyID    string `json:"cid"` //foreign key
+	LogID        int64  `json:"logid"`
 	ActivityType string `json:"activity_type"`
 	OwnerTable   string `json:"owner_table"` //table_name
 	Parameter    string `json:"parameter"`   //key=val or aid
@@ -111,10 +111,10 @@ type ActivityLog struct {
 type DeviceLog struct {
 	ID          string `json:"aid"`
 	Type        string `json:"type"`
+	CompanyID   string `json:"cid"`      //foreign key
 	LoginID     string `json:"login_id"` //foreign key
-	DeviceType  string `json:"device_type"`
-	CompanyID   string `json:"cid"` //foreign key
 	Browser     string `json:"browser"`
+	DeviceType  string `json:"device_type"`
 	Os          string `json:"os"`
 	Platform    string `json:"platform"`
 	ScreenSize  string `json:"screen_size"`
@@ -153,9 +153,9 @@ type Setting struct {
 //Message table
 type Message struct {
 	ID          string `json:"aid"`
-	MessageID   int64  `json:"message_id"`
 	Type        string `json:"type"`
-	CompanyID   string `json:"cid"`          //foreign key
+	CompanyID   string `json:"cid"` //foreign key
+	MessageID   int64  `json:"message_id"`
 	MessageType string `json:"message_type"` //contactus,inapp,email,sms,verify
 	Sender      string `json:"sender"`       //sender login_id or email
 	Receiver    string `json:"receiver"`     //receiver login_id
@@ -168,9 +168,9 @@ type Message struct {
 //Verification message
 type Verification struct {
 	ID                  string `json:"aid"`
-	Serial              int64  `json:"serial"`
 	Type                string `json:"type"`
-	CompanyID           string `json:"cid"`                  //foreign key
+	CompanyID           string `json:"cid"` //foreign key
+	Serial              int64  `json:"serial"`
 	MessageID           string `json:"message_id"`           //foreign key
 	VerificationPurpose string `json:"verification_purpose"` //TFA/VERIFY_EMAIL/VERIFIFY_CELL
 	VerificationCOde    string `json:"verification_code"`
@@ -241,9 +241,9 @@ type ItemReward struct {
 type Item struct {
 	ID                string  `json:"aid"`
 	Type              string  `json:"type"`
+	CompanyID         string  `json:"cid"`         //foreign key
 	ItemID            int64   `json:"item_id"`     //item_id
 	ItemCode          string  `json:"item_code"`   //item_code
-	CompanyID         string  `json:"cid"`         //foreign key
 	CategoryID        string  `json:"category_id"` //foreign key
 	ItemType          string  `json:"item_type"`   //raw_material,stockable,consumable,service
 	Tags              string  `json:"tags"`        //?? department
@@ -269,8 +269,8 @@ type Item struct {
 type ItemAttribute struct {
 	ID           string `json:"aid"`
 	Type         string `json:"type"`
-	ItemID       int64  `json:"item_id"` //item_id
 	CompanyID    string `json:"cid"`     //foreign key
+	ItemID       int64  `json:"item_id"` //item_id
 	Position     int    `json:"position"`
 	KeyType      string `json:"key_type"` //select, text, radio, color
 	DefaultValue string `json:"default_value"`
@@ -281,12 +281,28 @@ type ItemAttribute struct {
 type ItemAttributeValue struct {
 	ID              string `json:"aid"`
 	Type            string `json:"type"`
-	ItemID          int64  `json:"item_id"` //item_id
 	CompanyID       string `json:"cid"`     //foreign key
+	ItemID          int64  `json:"item_id"` //item_id
 	ItemAttributeID int    `json:"attribute_id"`
 	KeyType         string `json:"key_type"` //select, text, radio, color
 	DefaultValue    string `json:"default_value"`
 	Status          int    `json:"status"`
+}
+
+//Rateplan ..
+type Rateplan struct {
+	ID               string  `json:"aid"`
+	Type             string  `json:"type"`
+	CompanyID        string  `json:"cid"`           //foreign key
+	Serial           int64   `json:"serial"`        //cid wise auto increment
+	CustomerID       string  `json:"account_id"`    //connect with account receivable/customer/supplier
+	ItemID           int64   `json:"item_id"`       //item_id
+	ItemLoyaltyPoint int64   `json:"loyalty_point"` //bonus point
+	Rate             float64 `json:"rate"`          //1 tk = ???
+	Rebate           float64 `json:"rebate"`        //discount percentage
+	Charge           float64 `json:"charge"`        //charge percentage
+	Owner            string  `json:"owner"`         //customer, item
+	Status           int     `json:"status"`
 }
 
 //FileStore general table ***
@@ -345,9 +361,9 @@ type DocKeeper struct {
 type TransactionRecord struct {
 	ID             string  `json:"aid"`
 	Type           string  `json:"type"`
+	CompanyID      string  `json:"cid"` //foreign key
 	TrxID          int64   `json:"trx_id"`
 	TrxType        string  `json:"trx_type"`
-	CompanyID      string  `json:"cid"`        //foreign key
 	DocNumber      string  `json:"doc_number"` //foriegn key
 	ItemID         string  `json:"item_id"`
 	StockInfo      string  `json:"stock_info"`
