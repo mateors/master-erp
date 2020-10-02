@@ -217,8 +217,8 @@ type Department struct {
 	Type               string `json:"type"`
 	CompanyID          string `json:"cid"`             //foreign key
 	DepartmentID       string `json:"department_id"`   //company wise increase
-	DeaprtmentName     string `json:"department_name"` //child department
 	ParentDepartmentID string `json:"parent_id"`       //same table = parent_id="" parent department id
+	DeaprtmentName     string `json:"department_name"` //child department
 	Owner              string `json:"owner"`           //item | office
 	Status             int    `json:"status"`
 }
@@ -275,12 +275,10 @@ type Item struct {
 	Tags                        string  `json:"tags,omitempty"`                           //?? department
 	Supplier                    string  `json:"supplier,omitempty"`                       //Account*account_type = supplier
 	UnitOfMeasure               string  `json:"uom,omitempty"`
-	TrackingBy                  string  `json:"tracking,omitempty"` //tracking by
+	TrackingBy                  string  `json:"tracking,omitempty"` //tracking by unique_serial, lot_number, no_tracking
 	ReorderLevel                string  `json:"reorder_level"`
 	ReorderQty                  string  `json:"reorder_qty"`
-	WarehouseID                 string  `json:"warehouse_id"` //foreign key
-	StockQty                    int     `json:"stock_qty"`
-	OpeningStock                int64   `json:"opening"`
+	StockQty                    int64   `json:"stock_qty"`
 	PublishOnWebsite            string  `json:"publish_on_web"` //published | unpublished
 	DisplayOnSales              string  `json:"display_sales"`
 	DisplayOnPurchase           string  `json:"display_purchase"`
