@@ -199,23 +199,36 @@ type VisitorSession struct {
 	Status         int    `json:"status"`
 }
 
+//Warehouse table
+type Warehouse struct {
+	ID               string `json:"aid"`
+	Type             string `json:"type"`
+	CompanyID        string `json:"cid"` //foreign key
+	WarehouseID      int64  `json:"warehouse_id"`
+	WarehouseName    string `json:"warehouse_name"`
+	WarehouseDetails string `json:"warehouse_details"`
+	IsDefault        bool   `json:"isdefault"` //true|false == 0|1
+	Status           int    `json:"status"`
+}
+
 //Department itemDepartment -> ItemLine or department are same just one under another
 type Department struct {
 	ID                 string `json:"aid"`
 	Type               string `json:"type"`
 	CompanyID          string `json:"cid"`             //foreign key
+	DepartmentID       string `json:"department_id"`   //company wise increase
 	DeaprtmentName     string `json:"department_name"` //child department
 	ParentDepartmentID string `json:"parent_id"`       //same table = parent_id="" parent department id
 	Owner              string `json:"owner"`           //item | office
 	Status             int    `json:"status"`
 }
 
-//ItemCategory or ItemGroup keeps product group info
+//ItemCategory or ItemGroup keeps product group/category info
 type ItemCategory struct {
 	ID                  string `json:"aid"`
 	Type                string `json:"type"`
 	CompanyID           string `json:"cid"`         //foreign key
-	CategoryID          int64  `json:"category_id"` //
+	CategoryID          int64  `json:"category_id"` //company wise increase
 	DepartmentID        string `json:"department_id"`
 	Position            int    `json:"position"`
 	CategoryName        string `json:"category_name"`
@@ -228,9 +241,9 @@ type ItemCategory struct {
 //ItemReward ... invoice qty 1 == 50 points
 type ItemReward struct {
 	ID          string `json:"aid"`
-	Type        string `json:"type"` //item_reward
-	CompanyID   string `json:"cid"`
-	ItemID      string `json:"item_id"`
+	Type        string `json:"type"`         //item_reward
+	CompanyID   string `json:"cid"`          //foreign key
+	ItemID      string `json:"item_id"`      //foreign key
 	RewardUnit  string `json:"reward_unit"`  //qty,amount,amountPercentAsPoint, ProfitSharePercent
 	RewardValue int64  `json:"reward_value"` //10 pcs
 	RewardPoint int64  `json:"reward_point"` //50 points
@@ -239,40 +252,51 @@ type ItemReward struct {
 
 //Item keeps product/Item info
 type Item struct {
-	ID                string  `json:"aid"`
-	Type              string  `json:"type"`
-	CompanyID         string  `json:"cid"`         //foreign key
-	ItemID            int64   `json:"item_id"`     //item_id
-	ItemCode          string  `json:"item_code"`   //item_code
-	CategoryID        string  `json:"category_id"` //foreign key
-	ItemType          string  `json:"item_type"`   //raw_material,stockable,consumable,service
-	Tags              string  `json:"tags"`        //?? department
-	Supplier          string  `json:"supplier"`    //Account*account_type = supplier
-	ReorderLevel      string  `json:"reorder_level"`
-	ReorderQty        string  `json:"reorder_qty"`
-	Barcode           string  `json:"barcode"`
-	ItemName          string  `json:"item_name"`
-	ItemURL           string  `json:"item_url"`
-	ItemDescription   string  `json:"item_description"`
-	ItemImage         string  `json:"item_image"`
-	BuyPrice          float64 `json:"buy_price"`  //cost price, Trade Price
-	SalePrice         float64 `json:"sale_price"` //MRP
-	StockQty          int     `json:"stock_qty"`
-	PublishOnWebsite  string  `json:"publish_on_web"` //published | unpublished
-	DisplayOnSales    string  `json:"display_sales"`
-	DisplayOnPurchase string  `json:"display_purchase"`
-	Availability      string  `json:"availability"` //coming soon | available
-	Status            int     `json:"status"`
+	ID                          string  `json:"aid"`
+	Type                        string  `json:"type"`
+	CompanyID                   string  `json:"cid"`         //foreign key
+	ItemID                      int64   `json:"item_id"`     //item_id company wise increase
+	ItemCode                    string  `json:"item_code"`   //item_code = 12 character(4+4+4) ItemLine.Supplier.ItemSerial
+	CategoryID                  string  `json:"category_id"` //foreign key
+	ItemType                    string  `json:"item_type"`   //raw_material,stockable,consumable,service
+	ItemName                    string  `json:"item_name"`
+	ItemDescription             string  `json:"item_description"`
+	ItemURL                     string  `json:"item_url"`
+	ItemImage                   string  `json:"item_image"`
+	Barcode                     string  `json:"barcode"`
+	AssetAccount                string  `json:"asset_account,omitempty"`                  //AccountHead = ledger number
+	COGSAccount                 string  `json:"cogs_account,omitempty"`                   //AccountHead = ledger number
+	SalesAccount                string  `json:"sales_account,omitempty"`                  //AccountHead = ledger number
+	OpeningBalanceEquityAccount string  `json:"opening_balance_equity_account,omitempty"` //AccountHead = ledger number
+	VatID                       string  `json:"tax_id"`                                   //foreign key
+	BuyPrice                    float64 `json:"buy_price"`                                //cost price, Trade Price
+	SalePrice                   float64 `json:"sale_price"`                               //MRP
+	VatPercent                  string  `json:"vat"`                                      //vat percent
+	Tags                        string  `json:"tags,omitempty"`                           //?? department
+	Supplier                    string  `json:"supplier,omitempty"`                       //Account*account_type = supplier
+	UnitOfMeasure               string  `json:"uom,omitempty"`
+	TrackingBy                  string  `json:"tracking,omitempty"` //tracking by
+	ReorderLevel                string  `json:"reorder_level"`
+	ReorderQty                  string  `json:"reorder_qty"`
+	WarehouseID                 string  `json:"warehouse_id"` //foreign key
+	StockQty                    int     `json:"stock_qty"`
+	OpeningStock                int64   `json:"opening"`
+	PublishOnWebsite            string  `json:"publish_on_web"` //published | unpublished
+	DisplayOnSales              string  `json:"display_sales"`
+	DisplayOnPurchase           string  `json:"display_purchase"`
+	Availability                string  `json:"availability"` //coming soon | available | for website
+	Status                      int     `json:"status"`
 }
 
 //ItemAttribute ..
 type ItemAttribute struct {
 	ID           string `json:"aid"`
 	Type         string `json:"type"`
-	CompanyID    string `json:"cid"`     //foreign key
-	ItemID       int64  `json:"item_id"` //item_id
-	Position     int    `json:"position"`
-	KeyType      string `json:"key_type"` //select, text, radio, color
+	CompanyID    string `json:"cid"`           //foreign key
+	ItemID       int64  `json:"item_id"`       //item_id
+	AttributeKey string `json:"attribute_key"` //attr key
+	Position     int    `json:"position"`      //serial / position
+	KeyType      string `json:"key_type"`      //select, text, radio, color
 	DefaultValue string `json:"default_value"`
 	Status       int    `json:"status"`
 }
@@ -284,8 +308,7 @@ type ItemAttributeValue struct {
 	CompanyID       string `json:"cid"`     //foreign key
 	ItemID          int64  `json:"item_id"` //item_id
 	ItemAttributeID int    `json:"attribute_id"`
-	KeyType         string `json:"key_type"` //select, text, radio, color
-	DefaultValue    string `json:"default_value"`
+	AttributeValue  string `json:"attribute_value"` //select, text, radio, color
 	Status          int    `json:"status"`
 }
 
@@ -318,18 +341,6 @@ type FileStore struct {
 	FileLocation string `json:"file_location"`
 	Remarks      string `json:"remarks"`
 	Status       int    `json:"status"`
-}
-
-//Warehouse table
-type Warehouse struct {
-	ID               string `json:"aid"`
-	Type             string `json:"type"`
-	CompanyID        string `json:"cid"` //foreign key
-	WarehouseID      int64  `json:"warehouse_id"`
-	WarehouseName    string `json:"warehouse_name"`
-	WarehouseDetails string `json:"warehouse_details"`
-	IsDefault        bool   `json:"isdefault"` //true|false == 0|1
-	Status           int    `json:"status"`
 }
 
 //DocKeeper keeps all document info
