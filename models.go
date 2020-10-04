@@ -276,13 +276,15 @@ type Item struct {
 	Supplier                    string  `json:"supplier,omitempty"`                       //Account*account_type = supplier
 	UnitOfMeasure               string  `json:"uom,omitempty"`
 	TrackingBy                  string  `json:"tracking,omitempty"` //tracking by unique_serial, lot_number, no_tracking
-	ReorderLevel                string  `json:"reorder_level"`
-	ReorderQty                  string  `json:"reorder_qty"`
+	ReorderLevel                int64   `json:"reorder_level"`
+	ReorderQty                  int64   `json:"reorder_qty"`
+	BatchNo                     string  `json:"batch"`
+	ExpireDate                  string  `json:"expire_date"`
 	StockQty                    int64   `json:"stock_qty"`
-	PublishOnWebsite            string  `json:"publish_on_web"` //published | unpublished
-	DisplayOnSales              string  `json:"display_sales"`
-	DisplayOnPurchase           string  `json:"display_purchase"`
-	Availability                string  `json:"availability"` //coming soon | available | for website
+	PublishOnWebsite            int     `json:"publish_on_web"` //published | unpublished
+	DisplayOnSales              int     `json:"display_sales"`
+	DisplayOnPurchase           int     `json:"display_purchase"`
+	Availability                string  `json:"availability,omitempty"` //coming soon | available | for website
 	Status                      int     `json:"status"`
 }
 
@@ -291,7 +293,7 @@ type ItemAttribute struct {
 	ID           string `json:"aid"`
 	Type         string `json:"type"`
 	CompanyID    string `json:"cid"`           //foreign key
-	ItemID       int64  `json:"item_id"`       //item_id
+	ItemID       string `json:"item_id"`       //item_id foreign key
 	AttributeKey string `json:"attribute_key"` //attr key
 	Position     int    `json:"position"`      //serial / position
 	KeyType      string `json:"key_type"`      //select, text, radio, color
@@ -304,7 +306,7 @@ type ItemAttributeValue struct {
 	ID              string `json:"aid"`
 	Type            string `json:"type"`
 	CompanyID       string `json:"cid"`     //foreign key
-	ItemID          int64  `json:"item_id"` //item_id
+	ItemID          string `json:"item_id"` //foreign key item_id
 	ItemAttributeID int    `json:"attribute_id"`
 	AttributeValue  string `json:"attribute_value"` //select, text, radio, color
 	Status          int    `json:"status"`
