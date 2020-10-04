@@ -199,6 +199,38 @@ type VisitorSession struct {
 	Status         int    `json:"status"`
 }
 
+//AccountGroup ..
+type AccountGroup struct {
+	ID         string `json:"aid"`
+	Type       string `json:"type"`
+	CompanyID  string `json:"cid"` //foreign key
+	Serial     int64  `json:"serial"`
+	Name       string `json:"name"`
+	Restricted string `json:"restricted"` //Yes, No
+	ParentID   string `json:"parent_id"`  //same table foreign relation
+	GroupType  string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
+	Status     int    `json:"status"`     //0=Inactive, 1=Active, 9=Deleted
+}
+
+//AccountHeader accountLedger
+type AccountHeader struct {
+	// Baltype              string  `json:"baltype"`         //balance type
+	// Opening              float64 `json:"opening"`         //opening balance
+	ID                   string  `json:"aid"`
+	Type                 string  `json:"type"`
+	CompanyID            string  `json:"cid"`           //foreign key
+	Serial               int64   `json:"serial"`        //id
+	AccountGroupID       string  `json:"account_group"` //foreign key
+	Name                 string  `json:"name"`          //ledger name
+	Description          string  `json:"description"`   //
+	Code                 string  `json:"code"`          //ledger number
+	CurrentBalance       float64 `json:"balance"`       //ledger balance
+	CurrentBalanceType   string  `json:"baltype"`       //ledger balance type Dr or Cr
+	Restricted           int     `json:"restricted"`    //1=Yes, No=0
+	CostCenterApplicable int     `json:"cost_center"`   //1=Yes, No=0
+	Status               int     `json:"status"`        //0=Inactive, 1=Active, 9=Deleted
+}
+
 //Warehouse table
 type Warehouse struct {
 	ID               string `json:"aid"`
@@ -247,7 +279,7 @@ type Department struct {
 	ParentID    string `json:"parent_id"`   //same table = parent_id="" parent department id
 	Name        string `json:"name"`        //child department
 	Code        string `json:"code"`        //unique code
-	Description string `json:"description"` //child department
+	Description string `json:"description"` //default = when add from item page
 	Owner       string `json:"owner"`       //item | item_line | office
 	Status      int    `json:"status"`
 }
@@ -257,11 +289,12 @@ type ItemCategory struct {
 	ID                  string `json:"aid"`
 	Type                string `json:"type"`
 	CompanyID           string `json:"cid"`           //foreign key
-	CategoryID          int64  `json:"category_id"`   //company wise increase
+	Serial              int64  `json:"serial"`        //company wise increase
 	DepartmentID        string `json:"department_id"` //foreign key itemLine
-	Position            int    `json:"position"`
-	CategoryName        string `json:"name"`
+	Name                string `json:"name"`
 	CategoryDescription string `json:"description"`
+	Code                string `json:"code"`
+	Position            int    `json:"position"`
 	CategoryImage       string `json:"image"`
 	Owner               string `json:"owner"` //item / product | service
 	Status              int    `json:"status"`
@@ -437,38 +470,6 @@ type StockMovement struct {
 	StockBalance  int    `json:"stock_balance"`
 	Status        int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 
-}
-
-//AccountGroup ..
-type AccountGroup struct {
-	ID         string `json:"aid"`
-	Type       string `json:"type"`
-	CompanyID  string `json:"cid"` //foreign key
-	Serial     int64  `json:"serial"`
-	Name       string `json:"name"`
-	Restricted string `json:"restricted"` //Yes, No
-	ParentID   string `json:"parent_id"`  //same table foreign relation
-	GroupType  string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
-	Status     int    `json:"status"`     //0=Inactive, 1=Active, 9=Deleted
-}
-
-//AccountHeader ..
-type AccountHeader struct {
-	ID                   string  `json:"aid"`
-	Type                 string  `json:"type"`
-	CompanyID            string  `json:"cid"`             //foreign key
-	Serial               int64   `json:"serial"`          //id
-	Name                 string  `json:"name"`            //ledger name
-	Code                 string  `json:"code"`            //ledger number
-	Baltype              string  `json:"baltype"`         //balance type
-	Opening              float64 `json:"opening"`         //opening balance
-	CurrentBalance       float64 `json:"current_balance"` //ledger balance
-	CurrentBalanceType   string  `json:"curbal_type"`     //ledger balance type Dr or Cr
-	Restricted           string  `json:"restricted"`      //Yes, No
-	Description          string  `json:"description"`
-	AccountGroupID       string  `json:"account_group"`          //foreign key
-	CostCenterApplicable string  `json:"cost_center_applicable"` //Yes, No
-	Status               int     `json:"status"`                 //0=Inactive, 1=Active, 9=Deleted
 }
 
 //LedgerTransaction table
