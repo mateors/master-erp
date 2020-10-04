@@ -305,9 +305,9 @@ type ItemAttribute struct {
 type ItemAttributeValue struct {
 	ID              string `json:"aid"`
 	Type            string `json:"type"`
-	CompanyID       string `json:"cid"`     //foreign key
-	ItemID          string `json:"item_id"` //foreign key item_id
-	ItemAttributeID int    `json:"attribute_id"`
+	CompanyID       string `json:"cid"`             //foreign key
+	ItemID          string `json:"item_id"`         //foreign key item_id
+	ItemAttributeID string `json:"attribute_id"`    //foreign key ItemAttribute
 	AttributeValue  string `json:"attribute_value"` //select, text, radio, color
 	Status          int    `json:"status"`
 }
