@@ -211,30 +211,59 @@ type Warehouse struct {
 	Status           int    `json:"status"`
 }
 
+//UOM = Unit of Measurement
+type UOM struct {
+	ID         string `json:"aid"`
+	Type       string `json:"type"`
+	CompanyID  string `json:"cid"` //foreign key
+	Serial     int64  `json:"serial"`
+	UnitName   string `json:"unit_name"`
+	UnitSymbol string `json:"symbol"`
+	Status     int    `json:"status"`
+}
+
+//Tax ..
+type Tax struct {
+	ID                string  `json:"aid"`
+	Type              string  `json:"type"`
+	CompanyID         string  `json:"cid"`            //foreign key
+	Serial            int64   `json:"serial"`         //company wise increase
+	Name              string  `json:"name"`           //tax name
+	DisplayName       string  `json:"display_name"`   //display title
+	TaxRegNumber      string  `json:"tax_reg_number"` //taxid provided by govt
+	TaxType           string  `json:"tax_type"`       //vat | tax | income_tax
+	Rate              float64 `json:"rate"`           //tax rate applicable in percentage
+	AccountHeaderCode string  `json:"account_code"`   //ledger number attached to it
+	Remarks           string  `json:"remarks"`
+	Status            int     `json:"status"`
+}
+
 //Department itemDepartment -> ItemLine or department are same just one under another
 type Department struct {
-	ID                 string `json:"aid"`
-	Type               string `json:"type"`
-	CompanyID          string `json:"cid"`             //foreign key
-	DepartmentID       string `json:"department_id"`   //company wise increase
-	ParentDepartmentID string `json:"parent_id"`       //same table = parent_id="" parent department id
-	DeaprtmentName     string `json:"department_name"` //child department
-	Owner              string `json:"owner"`           //item | office
-	Status             int    `json:"status"`
+	ID          string `json:"aid"`
+	Type        string `json:"type"`
+	CompanyID   string `json:"cid"`         //foreign key
+	Serial      int64  `json:"serial"`      //company wise increase
+	ParentID    string `json:"parent_id"`   //same table = parent_id="" parent department id
+	Name        string `json:"name"`        //child department
+	Code        string `json:"code"`        //unique code
+	Description string `json:"description"` //child department
+	Owner       string `json:"owner"`       //item | item_line | office
+	Status      int    `json:"status"`
 }
 
 //ItemCategory or ItemGroup keeps product group/category info
 type ItemCategory struct {
 	ID                  string `json:"aid"`
 	Type                string `json:"type"`
-	CompanyID           string `json:"cid"`         //foreign key
-	CategoryID          int64  `json:"category_id"` //company wise increase
-	DepartmentID        string `json:"department_id"`
+	CompanyID           string `json:"cid"`           //foreign key
+	CategoryID          int64  `json:"category_id"`   //company wise increase
+	DepartmentID        string `json:"department_id"` //foreign key itemLine
 	Position            int    `json:"position"`
-	CategoryName        string `json:"category_name"`
-	CategoryDescription string `json:"category_description"`
-	CategoryImage       string `json:"category_image"`
-	CategoryFor         string `json:"category_for"` //item / product | service
+	CategoryName        string `json:"name"`
+	CategoryDescription string `json:"description"`
+	CategoryImage       string `json:"image"`
+	Owner               string `json:"owner"` //item / product | service
 	Status              int    `json:"status"`
 }
 
@@ -412,15 +441,15 @@ type StockMovement struct {
 
 //AccountGroup ..
 type AccountGroup struct {
-	ID                 string `json:"aid"`
-	Type               string `json:"type"`
-	CompanyID          string `json:"cid"` //foreign key
-	Serial             int64  `json:"serial"`
-	Name               string `json:"name"`
-	Restricted         string `json:"restricted"` //Yes, No
-	ParentAccountGroup string `json:"parent_id"`  //same table foreign relation
-	GroupType          string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
-	Status             int    `json:"status"`     //0=Inactive, 1=Active, 9=Deleted
+	ID         string `json:"aid"`
+	Type       string `json:"type"`
+	CompanyID  string `json:"cid"` //foreign key
+	Serial     int64  `json:"serial"`
+	Name       string `json:"name"`
+	Restricted string `json:"restricted"` //Yes, No
+	ParentID   string `json:"parent_id"`  //same table foreign relation
+	GroupType  string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
+	Status     int    `json:"status"`     //0=Inactive, 1=Active, 9=Deleted
 }
 
 //AccountHeader ..
