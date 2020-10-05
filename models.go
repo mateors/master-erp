@@ -284,20 +284,20 @@ type Department struct {
 	Status      int    `json:"status"`
 }
 
-//ItemCategory or ItemGroup keeps product group/category info
-type ItemCategory struct {
-	ID                  string `json:"aid"`
-	Type                string `json:"type"`
-	CompanyID           string `json:"cid"`           //foreign key
-	Serial              int64  `json:"serial"`        //company wise increase
-	DepartmentID        string `json:"department_id"` //foreign key itemLine
-	Name                string `json:"name"`
-	CategoryDescription string `json:"description"`
-	Code                string `json:"code"`
-	Position            int    `json:"position"`
-	CategoryImage       string `json:"image"`
-	Owner               string `json:"owner"` //item / product | service
-	Status              int    `json:"status"`
+//Category or ItemCategory/ItemGroup keeps product group/category info
+type Category struct {
+	ID            string `json:"aid"`
+	Type          string `json:"type"`
+	CompanyID     string `json:"cid"`           //foreign key
+	Serial        int64  `json:"serial"`        //company wise increase
+	DepartmentID  string `json:"department_id"` //foreign key itemLine
+	Name          string `json:"name"`
+	Description   string `json:"description"`
+	Code          string `json:"code"`
+	Position      int    `json:"position"`
+	CategoryImage string `json:"image"`
+	Owner         string `json:"owner"` //item / product | service
+	Status        int    `json:"status"`
 }
 
 //ItemReward ... invoice qty 1 == 50 points
