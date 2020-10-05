@@ -16,7 +16,6 @@ type Access struct {
 	Type       string `json:"type"`
 	CompanyID  string `json:"cid"`    //foreign key
 	Serial     int64  `json:"serial"` //company wise increase
-	AccessID   int    `json:"access_id"`
 	AccessName string `json:"access_name"`
 	Status     int    `json:"status"`
 }
