@@ -331,8 +331,7 @@ type Item struct {
 	ItemName                    string  `json:"item_name"`
 	ItemDescription             string  `json:"item_description"`
 	ItemURL                     string  `json:"item_url"`
-	Department                  string  `json:"department"` //just put it extra
-	ItemLine                    string  `json:"item_line"`  //to avoid complexity in join
+	ItemLine                    string  `json:"item_line,omitempty"` //*** put extra to avoid complexity in join
 	ItemImage                   string  `json:"item_image"`
 	Barcode                     string  `json:"barcode"`
 	AssetAccount                string  `json:"asset_account,omitempty"`                  //AccountHead = ledger number
