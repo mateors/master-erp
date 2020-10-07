@@ -272,7 +272,7 @@ type Tax struct {
 	TaxType           string  `json:"tax_type"`       //vat | tax | income_tax
 	Rate              float64 `json:"rate"`           //tax rate applicable in percentage
 	AccountHeaderCode string  `json:"account_code"`   //ledger number attached to it
-	Remarks           string  `json:"remarks"`
+	Remarks           string  `json:"remarks"`        //remarks=default auto selected from item creation
 	Status            int     `json:"status"`
 }
 
@@ -326,11 +326,13 @@ type Item struct {
 	CompanyID                   string  `json:"cid"`         //foreign key
 	Serial                      int64   `json:"serial"`      //company wise increase
 	ItemCode                    string  `json:"item_code"`   //item_code = 12 character(4+4+4) ItemLine.Supplier.ItemSerial
-	CategoryID                  string  `json:"category_id"` //foreign key
+	CategoryID                  string  `json:"category_id"` //foreign key as item_group
 	ItemType                    string  `json:"item_type"`   //raw_material,stockable,consumable,service
 	ItemName                    string  `json:"item_name"`
 	ItemDescription             string  `json:"item_description"`
 	ItemURL                     string  `json:"item_url"`
+	Department                  string  `json:"department"` //just put it extra
+	ItemLine                    string  `json:"item_line"`  //to avoid complexity in join
 	ItemImage                   string  `json:"item_image"`
 	Barcode                     string  `json:"barcode"`
 	AssetAccount                string  `json:"asset_account,omitempty"`                  //AccountHead = ledger number
