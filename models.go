@@ -313,7 +313,7 @@ type ItemReward struct {
 	CompanyID   string `json:"cid"`          //foreign key
 	Serial      int64  `json:"serial"`       //company wise increase
 	ItemID      string `json:"item_id"`      //foreign key
-	RewardUnit  string `json:"reward_unit"`  //qty,amount,amountPercentAsPoint, ProfitSharePercent
+	RewardField string `json:"reward_field"` //qty,amount,amountPercentAsPoint, ProfitSharePercent
 	RewardValue int64  `json:"reward_value"` //10 pcs
 	RewardPoint int64  `json:"reward_point"` //50 points
 	Status      int    `json:"status"`
@@ -334,18 +334,18 @@ type Item struct {
 	ItemLine                    string  `json:"item_line,omitempty"` //*** put extra to avoid complexity in join
 	ItemImage                   string  `json:"item_image"`
 	Barcode                     string  `json:"barcode"`
-	AssetAccount                string  `json:"asset_account,omitempty"`                  //AccountHead = ledger number
-	COGSAccount                 string  `json:"cogs_account,omitempty"`                   //AccountHead = ledger number
-	SalesAccount                string  `json:"sales_account,omitempty"`                  //AccountHead = ledger number
-	OpeningBalanceEquityAccount string  `json:"opening_balance_equity_account,omitempty"` //AccountHead = ledger number
-	VatID                       string  `json:"tax_id"`                                   //foreign key
-	BuyPrice                    float64 `json:"buy_price"`                                //cost price, Trade Price
-	SalePrice                   float64 `json:"sale_price"`                               //MRP
-	VatPercent                  string  `json:"vat"`                                      //vat percent
-	Tags                        string  `json:"tags,omitempty"`                           //?? department
-	Supplier                    string  `json:"supplier,omitempty"`                       //Account*account_type = supplier
+	AssetAccount                string  `json:"asset_account"`                  //AccountHead = ledger number
+	COGSAccount                 string  `json:"cogs_account"`                   //AccountHead = ledger number
+	SalesAccount                string  `json:"sales_account"`                  //AccountHead = ledger number
+	OpeningBalanceEquityAccount string  `json:"opening_balance_equity_account"` //AccountHead = ledger number
+	VatID                       string  `json:"tax_id"`                         //foreign key
+	VatPercent                  string  `json:"vat"`                            //vat percent
+	BuyPrice                    float64 `json:"buy_price"`                      //cost price, Trade Price
+	SalePrice                   float64 `json:"sale_price"`                     //MRP
+	Tags                        string  `json:"tags,omitempty"`                 //?? department
+	Supplier                    string  `json:"supplier,omitempty"`             //Account*account_type = supplier
 	UnitOfMeasure               string  `json:"uom,omitempty"`
-	TrackingBy                  string  `json:"tracking,omitempty"` //tracking by unique_serial, lot_number, no_tracking
+	TrackingBy                  string  `json:"tracking"` //tracking by unique_serial, lot_number, no_tracking
 	ReorderLevel                int64   `json:"reorder_level"`
 	ReorderQty                  int64   `json:"reorder_qty"`
 	BatchNo                     string  `json:"batch"`
@@ -381,6 +381,7 @@ type ItemAttributeValue struct {
 	ItemID          string `json:"item_id"`         //foreign key item_id
 	ItemAttributeID string `json:"attribute_id"`    //foreign key ItemAttribute
 	AttributeValue  string `json:"attribute_value"` //select, text, radio, color
+	Position        int    `json:"position"`        //serial / position
 	Status          int    `json:"status"`
 }
 
