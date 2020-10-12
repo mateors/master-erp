@@ -98,7 +98,6 @@ type ActivityLog struct {
 	Type         string `json:"type"`
 	CompanyID    string `json:"cid"`    //foreign key
 	Serial       int64  `json:"serial"` //company wise increase
-	LogID        int64  `json:"logid"`  //companywise increase
 	ActivityType string `json:"activity_type"`
 	OwnerTable   string `json:"owner_table"` //table_name
 	Parameter    string `json:"parameter"`   //key=val or aid
