@@ -103,7 +103,8 @@ type ActivityLog struct {
 	Parameter    string `json:"parameter"`   //key=val or aid
 	LogDetails   string `json:"log_details"`
 	IPAddress    string `json:"ip_address"`
-	LoginID      string `json:"login_id"` //foreign key
+	LoginID      string `json:"login_id"`      //optional foreign key
+	LoginSession string `json:"login_session"` //foreign key
 	CreateDate   string `json:"create_date"`
 	Status       int    `json:"status"`
 }
