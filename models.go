@@ -300,7 +300,7 @@ type Category struct {
 	Name          string `json:"name"`
 	Description   string `json:"description"`
 	Code          string `json:"code"`
-	Position      int    `json:"position"`
+	Position      int64  `json:"position"`
 	CategoryImage string `json:"image"`
 	Owner         string `json:"owner"` //item / product | service
 	Status        int    `json:"status"`
@@ -366,7 +366,7 @@ type ItemAttribute struct {
 	Serial       int64  `json:"serial"`        //company wise increase
 	ItemID       string `json:"item_id"`       //item_id foreign key
 	AttributeKey string `json:"attribute_key"` //attr key
-	Position     int    `json:"position"`      //serial / position
+	Position     int64  `json:"position"`      //serial / position
 	KeyType      string `json:"key_type"`      //select, text, radio, color
 	DefaultValue string `json:"default_value"`
 	Status       int    `json:"status"`
@@ -381,7 +381,7 @@ type ItemAttributeValue struct {
 	ItemID          string `json:"item_id"`         //foreign key item_id
 	ItemAttributeID string `json:"attribute_id"`    //foreign key ItemAttribute
 	AttributeValue  string `json:"attribute_value"` //select, text, radio, color
-	Position        int    `json:"position"`        //serial / position
+	Position        int64  `json:"position"`        //serial / position
 	Status          int    `json:"status"`
 }
 
@@ -441,7 +441,7 @@ type DocKeeper struct {
 	Status         int     `json:"status"`
 }
 
-//TransactionRecord keeps all transaction info
+//TransactionRecord keeps all transaction info like sales, purchase, online oreder
 type TransactionRecord struct {
 	ID             string  `json:"aid"`
 	Type           string  `json:"type"`
@@ -465,7 +465,7 @@ type TransactionRecord struct {
 	Status         int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
 
-//StockMovement table
+//StockMovement keeps stock transfer from warehouse to warehouse or other
 type StockMovement struct {
 	ID            string `json:"aid"`
 	Type          string `json:"type"`
@@ -483,7 +483,7 @@ type StockMovement struct {
 
 }
 
-//LedgerTransaction table
+//LedgerTransaction table stores accounting transaction between ledgers/accounting_header
 type LedgerTransaction struct {
 	ID           string  `json:"aid"`
 	Type         string  `json:"type"`
