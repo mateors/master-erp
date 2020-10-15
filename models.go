@@ -208,11 +208,11 @@ type VisitorSession struct {
 type AccountGroup struct {
 	ID         string `json:"aid"`
 	Type       string `json:"type"`
-	CompanyID  string `json:"cid"`    //foreign key
-	Serial     int64  `json:"serial"` //company wise increase
-	Name       string `json:"name"`
+	CompanyID  string `json:"cid"`        //foreign key
+	Serial     int64  `json:"serial"`     //company wise increase
+	Name       string `json:"name"`       //Group Name
+	ParentID   string `json:"parent_id"`  //Group Under same table foreign relation
 	Restricted string `json:"restricted"` //Yes, No
-	ParentID   string `json:"parent_id"`  //same table foreign relation
 	GroupType  string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
 	Status     int    `json:"status"`     //0=Inactive, 1=Active, 9=Deleted
 }
