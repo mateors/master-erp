@@ -211,28 +211,30 @@ type AccountGroup struct {
 	CompanyID  string `json:"cid"`        //foreign key
 	Serial     int64  `json:"serial"`     //company wise increase
 	Name       string `json:"name"`       //Group Name
+	Code       string `json:"code"`       //group code
 	ParentID   string `json:"parent_id"`  //Group Under same table foreign relation
 	Restricted string `json:"restricted"` //Yes, No
 	GroupType  string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
-	Status     int    `json:"status"`     //0=Inactive, 1=Active, 9=Deleted
+	Remarks    string `json:"remarks"`    //remarks preveius software code
+	CreateDate string `json:"create_date"`
+	Status     int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
 
 //AccountHeader accountLedger
 type AccountHeader struct {
-	// Baltype              string  `json:"baltype"`         //balance type
-	// Opening              float64 `json:"opening"`         //opening balance
-	ID                   string  `json:"aid"`
-	Type                 string  `json:"type"`
+	ID                   string  `json:"aid"`           //unique id
+	Type                 string  `json:"type"`          //table
 	CompanyID            string  `json:"cid"`           //foreign key
 	Serial               int64   `json:"serial"`        //company wise increase
-	AccountGroupID       string  `json:"account_group"` //foreign key
+	AccountGroupID       string  `json:"account_group"` //foreign key AccountGroup
 	Name                 string  `json:"name"`          //ledger name
 	Description          string  `json:"description"`   //
-	Code                 string  `json:"code"`          //ledger number
+	LedgerCode           string  `json:"ledger"`        //ledger number
 	CurrentBalance       float64 `json:"balance"`       //ledger balance
 	CurrentBalanceType   string  `json:"baltype"`       //ledger balance type Dr or Cr
 	Restricted           int     `json:"restricted"`    //1=Yes, No=0
 	CostCenterApplicable int     `json:"cost_center"`   //1=Yes, No=0
+	CreateDate           string  `json:"create_date"`   //insert date
 	Status               int     `json:"status"`        //0=Inactive, 1=Active, 9=Deleted
 }
 
@@ -487,15 +489,16 @@ type StockMovement struct {
 type LedgerTransaction struct {
 	ID           string  `json:"aid"`
 	Type         string  `json:"type"`
-	CompanyID    string  `json:"cid"`        //foreign key
-	Serial       int64   `json:"serial"`     //company wise increase
-	DocNumber    string  `json:"doc_number"` //foriegn key
-	VoucherName  string  `json:"voucher_name"`
-	LedgerNumber string  `json:"ledger_number"`
+	CompanyID    string  `json:"cid"`          //foreign key
+	Serial       int64   `json:"serial"`       //company wise increase
+	DocNumber    string  `json:"doc_number"`   //foriegn key
+	VoucherName  string  `json:"voucher_name"` //
+	LedgerNumber string  `json:"ledger"`       //ledger code on AccountHeader
 	Description  string  `json:"description"`
 	Debit        float64 `json:"debit"`
 	Credit       float64 `json:"credit"`
 	Balance      float64 `json:"balance"`
 	BalanceType  string  `json:"baltype"` //balance type Dr/Cr/Eq
-	Status       int     `json:"status"`  //0=Inactive, 1=Active, 9=Deleted
+	CreateDate   string  `json:"create_date"`
+	Status       int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
