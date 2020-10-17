@@ -213,7 +213,7 @@ type AccountGroup struct {
 	Name       string `json:"name"`       //Group Name
 	Code       string `json:"code"`       //group code
 	ParentID   string `json:"parent_id"`  //Group Under same table foreign relation
-	Restricted string `json:"restricted"` //Yes, No
+	Restricted int    `json:"restricted"` //Yes, No
 	GroupType  string `json:"group_type"` //Asset | Liability | Equity | Revenue | Expense
 	Remarks    string `json:"remarks"`    //remarks preveius software code
 	CreateDate string `json:"create_date"`
