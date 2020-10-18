@@ -220,8 +220,8 @@ type AccountGroup struct {
 	Status     int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
 
-//AccountHeader accountLedger
-type AccountHeader struct {
+//AccountHead accountLedger
+type AccountHead struct {
 	ID                   string  `json:"aid"`           //unique id
 	Type                 string  `json:"type"`          //table
 	CompanyID            string  `json:"cid"`           //foreign key
