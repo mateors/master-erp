@@ -95,6 +95,7 @@ type Address struct {
 //ActivityLog ***
 type ActivityLog struct {
 	ID           string `json:"aid"`
+	LogID        int64  `json:"log_id"`
 	Type         string `json:"type"`
 	CompanyID    string `json:"cid"`    //foreign key
 	Serial       int64  `json:"serial"` //company wise increase
