@@ -503,3 +503,27 @@ type LedgerTransaction struct {
 	CreateDate   string  `json:"create_date"`
 	Status       int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
+
+//Rateplan ...
+type Rateplan struct {
+	ID        string `json:"aid"`
+	CompanyID string `json:"cid"`
+	Type      string `json:"type"`
+	Name      string `json:"name"`
+	Owner     string `json:"owner"`
+	Status    string `json:"status"`
+}
+
+//Rate ...
+type Rate struct {
+	ID         string `json:"aid"`
+	CompanyID  string `json:"cid"`
+	Type       string `json:"type"`
+	RateplanID string `json:"rateplan_id"`
+	ItemID     string `json:"item_id"`
+	Rate       string `json:"rate"`
+	Rebate     string `json:"rebate"`
+	Charge     string `json:"charge"`
+	Remarks    string `json:"remarks"`
+	Status     string `json:"status"`
+}
