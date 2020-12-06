@@ -24,14 +24,15 @@ type Access struct {
 type Account struct {
 	//ContactInfo []Contact `json:"contact_info,omitempty"`
 	ID          string `json:"aid"`
-	Type        string `json:"type"`                //account
-	CompanyID   string `json:"cid"`                 //foreign key
-	Serial      int64  `json:"serial"`              //company wise increase
-	ParentID    string `json:"parent_id,omitempty"` //if any parent
-	AccountType string `json:"account_type"`        //vendor,supplier,customer,consumer
-	AccountName string `json:"account_name"`        //supplier business name
-	Code        string `json:"code"`                //supplier or customer code
-	LoginID     string `json:"login_id"`            //foreign key
+	Type        string `json:"type"`                  //account
+	CompanyID   string `json:"cid"`                   //foreign key
+	Serial      int64  `json:"serial"`                //company wise increase
+	ParentID    string `json:"parent_id,omitempty"`   //if any parent
+	RateplanID  string `json:"rateplan_id,omitempty"` //if topup client
+	AccountType string `json:"account_type"`          //vendor,supplier,customer,consumer
+	AccountName string `json:"account_name"`          //supplier business name
+	Code        string `json:"code"`                  //supplier or customer code
+	LoginID     string `json:"login_id"`              //foreign key
 	FirstName   string `json:"first_name,omitempty"`
 	LastName    string `json:"last_name,omitempty"`
 	DateOfBirth string `json:"dob,omitempty"`
