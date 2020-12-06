@@ -28,6 +28,7 @@ type Account struct {
 	CompanyID   string `json:"cid"`                   //foreign key
 	Serial      int64  `json:"serial"`                //company wise increase
 	ParentID    string `json:"parent_id,omitempty"`   //if any parent
+	Photo       string `json:"photo"`                 //account owner photo
 	RateplanID  string `json:"rateplan_id,omitempty"` //if topup client
 	AccountType string `json:"account_type"`          //vendor,supplier,customer,consumer
 	AccountName string `json:"account_name"`          //supplier business name
