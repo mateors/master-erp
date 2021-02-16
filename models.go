@@ -28,10 +28,10 @@ type Account struct {
 	CompanyID   string `json:"cid"`                   //foreign key
 	Serial      int64  `json:"serial"`                //company wise increase
 	ParentID    string `json:"parent_id,omitempty"`   //if any parent
-	Photo       string `json:"photo"`                 //account owner photo
+	Photo       string `json:"photo,omitempty"`       //account owner photo
 	RateplanID  string `json:"rateplan_id,omitempty"` //if topup client
 	AccountType string `json:"account_type"`          //vendor,supplier,customer,consumer
-	AccountName string `json:"account_name"`          //supplier business name
+	AccountName string `json:"account_name"`          //supplier business name or username
 	Code        string `json:"code"`                  //supplier or customer code
 	LoginID     string `json:"login_id"`              //foreign key
 	FirstName   string `json:"first_name,omitempty"`
@@ -49,12 +49,12 @@ type Account struct {
 type Login struct {
 	ID         string `json:"aid"`
 	Type       string `json:"type"`
-	CompanyID  string `json:"cid"`        //foreign key
-	Serial     int64  `json:"serial"`     //company wise increasing
-	AccountID  string `json:"account_id"` //foreign key
-	AccessID   string `json:"access_id"`  //foreign key
-	AccessName string `json:"access_name"`
-	UserName   string `json:"username"` //email or mobile as username
+	CompanyID  string `json:"cid"`         //foreign key
+	Serial     int64  `json:"serial"`      //company wise increasing
+	AccountID  string `json:"account_id"`  //foreign key
+	AccessID   string `json:"access_id"`   //foreign key
+	AccessName string `json:"access_name"` //customer type
+	UserName   string `json:"username"`    //email or mobile as username
 	Password   string `json:"passw"`
 	CreateDate string `json:"create_date"`
 	LastLogin  string `json:"last_login,omitempty"`
@@ -245,12 +245,11 @@ type AccountHead struct {
 type Warehouse struct {
 	ID               string `json:"aid"`
 	Type             string `json:"type"`
-	CompanyID        string `json:"cid"`    //foreign key
-	Serial           int64  `json:"serial"` //company wise increase
-	WarehouseID      int64  `json:"warehouse_id"`
-	WarehouseName    string `json:"warehouse_name"`
-	WarehouseDetails string `json:"warehouse_details"`
-	IsDefault        bool   `json:"isdefault"` //true|false == 0|1
+	CompanyID        string `json:"cid"`            //foreign key
+	Serial           int64  `json:"serial"`         //company wise increase
+	WarehouseName    string `json:"warehouse_name"` //warehouse_name
+	WarehouseDetails string `json:"details"`        //warehouse_details
+	IsDefault        bool   `json:"isdefault"`      //true|false == 0|1
 	Status           int    `json:"status"`
 }
 
@@ -391,43 +390,47 @@ type ItemAttributeValue struct {
 }
 
 //Rateplan ..
-type Rateplan struct {
-	ID               string  `json:"aid"`
-	Type             string  `json:"type"`
-	CompanyID        string  `json:"cid"`           //foreign key
-	Serial           int64   `json:"serial"`        //company wise increase
-	CustomerID       string  `json:"account_id"`    //connect with account receivable/customer/supplier
-	ItemID           int64   `json:"item_id"`       //item_id
-	ItemLoyaltyPoint int64   `json:"loyalty_point"` //bonus point
-	Rate             float64 `json:"rate"`          //1 tk = ???
-	Rebate           float64 `json:"rebate"`        //discount percentage
-	Charge           float64 `json:"charge"`        //charge percentage
-	Owner            string  `json:"owner"`         //customer, item
-	Status           int     `json:"status"`
-}
+// type Rateplan struct {
+// 	ID               string  `json:"aid"`
+// 	Type             string  `json:"type"`
+// 	CompanyID        string  `json:"cid"`        //foreign key
+// 	Serial           int64   `json:"serial"`     //company wise increase
+// 	CustomerID       string  `json:"account_id"` //connect with account receivable/customer/supplier
+// 	ItemID           int64   `json:"item_id"`    //item_id
+// 	Name             string  `json:"name"`
+// 	ItemLoyaltyPoint int64   `json:"loyalty_point"` //bonus point
+// 	Rate             float64 `json:"rate"`          //1 tk = ???
+// 	Rebate           float64 `json:"rebate"`        //discount percentage
+// 	Charge           float64 `json:"charge"`        //charge percentage
+// 	Owner            string  `json:"owner"`         //customer, item
+// 	Status           int     `json:"status"`
+// }
 
 //Rateplan ...
-// type Rateplan struct {
-// 	ID        string `json:"aid"`
-// 	CompanyID string `json:"cid"`
-// 	Type      string `json:"type"`
-// 	Name      string `json:"name"`
-// 	Owner     string `json:"owner"`
-// 	Status    string `json:"status"`
-// }
+type Rateplan struct {
+	ID         string `json:"aid"`
+	CompanyID  string `json:"cid"`
+	CustomerID string `json:"account_id"` //AccountID
+	Type       string `json:"type"`       //type=rateplan
+	Serial     int64  `json:"serial"`     //company wise increase
+	Name       string `json:"name"`
+	Owner      string `json:"owner"`
+	Status     string `json:"status"`
+}
 
 //Rate ...
 type Rate struct {
-	ID         string `json:"aid"`
-	CompanyID  string `json:"cid"`
-	Type       string `json:"type"`
-	RateplanID string `json:"rateplan_id"`
-	ItemID     string `json:"item_id"`
-	Rate       string `json:"rate"`
-	Rebate     string `json:"rebate"`
-	Charge     string `json:"charge"`
-	Remarks    string `json:"remarks"`
-	Status     string `json:"status"`
+	ID               string `json:"aid"`
+	CompanyID        string `json:"cid"`
+	Type             string `json:"type"`
+	RateplanID       string `json:"rateplan_id"`
+	ItemID           string `json:"item_id"`
+	ItemLoyaltyPoint int64  `json:"loyalty_point"` //bonus point
+	Rate             string `json:"rate"`
+	Rebate           string `json:"rebate"`
+	Charge           string `json:"charge"`
+	Remarks          string `json:"remarks"`
+	Status           string `json:"status"`
 }
 
 //FileStore general table ***
