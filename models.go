@@ -5,6 +5,7 @@ type Company struct {
 	ID          string `json:"aid"`
 	Type        string `json:"type"`
 	CompanyID   int64  `json:"cid"`
+	Serial      int64  `json:"serial"`
 	CompanyName string `json:"company_name,omitempty"`
 	Website     string `json:"website,omitempty"`
 	Status      int    `json:"status"`
@@ -152,6 +153,7 @@ type Setting struct {
 	ID         string `json:"aid"`
 	Type       string `json:"type"`
 	CompanyID  string `json:"cid"` //foreign key
+	Serial     int64  `json:"serial"`
 	FieldName  string `json:"field_name"`
 	FieldValue string `json:"field_value"`
 	Status     int    `json:"status"`
@@ -241,7 +243,7 @@ type AccountHead struct {
 	Status               int     `json:"status"`        //0=Inactive, 1=Active, 9=Deleted
 }
 
-//Warehouse table
+//Warehouse table xlsx file 07
 type Warehouse struct {
 	ID               string `json:"aid"`
 	Type             string `json:"type"`
@@ -409,10 +411,10 @@ type ItemAttributeValue struct {
 //Rateplan ...
 type Rateplan struct {
 	ID         string `json:"aid"`
+	Type       string `json:"type"` //type=rateplan
 	CompanyID  string `json:"cid"`
-	CustomerID string `json:"account_id"` //AccountID
-	Type       string `json:"type"`       //type=rateplan
 	Serial     int64  `json:"serial"`     //company wise increase
+	CustomerID string `json:"account_id"` //AccountID
 	Name       string `json:"name"`
 	Owner      string `json:"owner"`
 	Status     string `json:"status"`
@@ -421,8 +423,9 @@ type Rateplan struct {
 //Rate ...
 type Rate struct {
 	ID               string `json:"aid"`
+	Type             string `json:"type"` //type=rate
 	CompanyID        string `json:"cid"`
-	Type             string `json:"type"`
+	Serial           int64  `json:"serial"`
 	RateplanID       string `json:"rateplan_id"`
 	ItemID           string `json:"item_id"`
 	ItemLoyaltyPoint int64  `json:"loyalty_point"` //bonus point
