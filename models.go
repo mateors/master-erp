@@ -4,7 +4,6 @@ package models
 type Company struct {
 	ID          string `json:"aid"`
 	Type        string `json:"type"`
-	CompanyID   int64  `json:"cid"`
 	Serial      int64  `json:"serial"`
 	CompanyName string `json:"company_name,omitempty"`
 	Website     string `json:"website,omitempty"`
