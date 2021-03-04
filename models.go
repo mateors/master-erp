@@ -38,11 +38,36 @@ type Account struct {
 	LastName    string `json:"last_name,omitempty"`
 	DateOfBirth string `json:"dob,omitempty"`
 	Gender      string `json:"gender,omitempty"` //female,male,other
-	Mobile      string `json:"mobile"`           //
+	Mobile      string `json:"mobile"`           //phone
 	Email       string `json:"email"`            //
+	Remarks     string `json:"remarks"`          //avg salary
 	CreateDate  string `json:"create_date"`
 	UpdateDate  string `json:"update_date,omitempty"`
 	Status      int    `json:"status"`
+}
+
+//CustomField ...
+type CustomField struct {
+	ID        string `json:"aid"`
+	Type      string `json:"type"` //account
+	CompanyID string `json:"cid"`  //foreign key
+	Serial    int64  `json:"serial"`
+	AccountID string `json:"account_id"`
+	Owner     string `json:"owner"`    //account
+	FieldID   string `json:"field_id"` //extra
+	FieldName string `json:"field_name"`
+	Status    int    `json:"status"`
+}
+
+//CustomFieldValue ...
+type CustomFieldValue struct {
+	ID         string `json:"aid"`
+	Type       string `json:"type"` //account
+	CompanyID  string `json:"cid"`  //foreign key
+	Serial     int64  `json:"serial"`
+	FieldID    string `json:"field_id"`    //CustomFieldAID
+	FieldValue string `json:"field_value"` //account
+	Status     int    `json:"status"`
 }
 
 //Login #4  all user account login table
