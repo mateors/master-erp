@@ -37,10 +37,10 @@ type Account struct {
 	FirstName   string `json:"first_name,omitempty"`
 	LastName    string `json:"last_name,omitempty"`
 	DateOfBirth string `json:"dob,omitempty"`
-	Gender      string `json:"gender,omitempty"` //female,male,other
-	Mobile      string `json:"mobile"`           //phone
-	Email       string `json:"email"`            //
-	Remarks     string `json:"remarks"`          //avg salary
+	Gender      string `json:"gender,omitempty"`  //female,male,other
+	Mobile      string `json:"mobile"`            //phone
+	Email       string `json:"email"`             //
+	Remarks     string `json:"remarks,omitempty"` //avg salary
 	CreateDate  string `json:"create_date"`
 	UpdateDate  string `json:"update_date,omitempty"`
 	Status      int    `json:"status"`
