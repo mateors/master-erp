@@ -107,8 +107,7 @@ type Address struct {
 	Type        string `json:"type"`
 	CompanyID   string `json:"cid"` //foreign key
 	Serial      int64  `json:"serial"`
-	AccountID   string `json:"account_id"` //foreign_key
-	AddressID   string `json:"address_id"`
+	AccountID   string `json:"account_id"`   //foreign_key
 	AddressType string `json:"address_type"` //billing,shipping
 	Country     string `json:"country"`
 	State       string `json:"state"`
