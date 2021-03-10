@@ -30,7 +30,7 @@ type Account struct {
 	ParentID    string `json:"parent_id,omitempty"`   //if any parent
 	Photo       string `json:"photo,omitempty"`       //account owner photo
 	RateplanID  string `json:"rateplan_id,omitempty"` //if topup client
-	AccountType string `json:"account_type"`          //vendor,supplier,customer,consumer
+	AccountType string `json:"account_type"`          //vendor,goods_supplier,customer,consumer,payment_provider,shipping_provider
 	AccountName string `json:"account_name"`          //supplier business name or username
 	Code        string `json:"code"`                  //supplier or customer code
 	LoginID     string `json:"login_id"`              //foreign key
@@ -559,4 +559,81 @@ type LedgerTransaction struct {
 	BalanceType  string  `json:"baltype"` //balance type Dr/Cr/Eq
 	CreateDate   string  `json:"create_date"`
 	Status       int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+}
+
+//ShippingAddress ...
+type ShippingAddress struct {
+	ID               string `json:"aid"`
+	Type             string `json:"type"`
+	CompanyID        string `json:"cid"`        //foreign key
+	Serial           int64  `json:"serial"`     //company wise increase
+	DocNumber        string `json:"doc_number"` //foriegn key
+	ReciverFirstName string `json:"first_name"`
+	ReciverLastName  string `json:"last_name"`
+	Phone            string `json:"phone"`
+	Email            string `json:"email"`
+	City             string `json:"city"`
+	ZipCode          string `json:"zip"`
+	Address1         string `json:"address1"`
+	Address2         string `json:"address2"`
+	Status           int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+}
+
+//PaymentOption ...
+type PaymentOption struct {
+	ID               string `json:"aid"`
+	Type             string `json:"type"`
+	CompanyID        string `json:"cid"`    //foreign key
+	Serial           int64  `json:"serial"` //company wise increase
+	Position         int    `json:"position"`
+	IsDefault        int    `json:"isdefault"`
+	AccountAID       string `json:"account_id"` //foriegn key, provider AccountAID
+	OptionName       string `json:"name"`       //foriegn key
+	OptionDetails    string `json:"details"`
+	ChargeApplicable int    `json:"charge_applicable"`
+	ChargeType       string `json:"charge_type"`
+	ChargeAmount     string `json:"charge_amount"`
+	LedgerNumber     string `json:"ledger"` //ledger AccountHead
+	Status           int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+}
+
+//ShippingOption ...
+type ShippingOption struct {
+	ID              string `json:"aid"`
+	Type            string `json:"type"`
+	CompanyID       string `json:"cid"`          //foreign key
+	SupplierID      string `json:"supplier_aid"` //*** contactTable supplier
+	Serial          int64  `json:"serial"`       //company wise increase
+	Position        int    `json:"position"`
+	IsDefault       int    `json:"isdefault"`
+	AccountAID      string `json:"account_id"` //foriegn key, AccountAID
+	ProviderName    string `json:"name"`       //account_name
+	ProviderDetails string `json:"details"`
+	DeliveryTime    int    `json:"delivery_time"` //'how many days it takes to deliver',
+	ChargeAmount    string `json:"charge_amount"` //Shhipping charge == 'handling fees',
+	LedgerNumber    string `json:"ledger"`        //*** ledger AccountHead
+	Remarks         string `json:"remarks"`
+	Status          int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+}
+
+//DocPayShipInfo ...
+type DocPayShipInfo struct {
+	ID                 string  `json:"aid"`
+	Type               string  `json:"type"`
+	CompanyID          string  `json:"cid"`            //foreign key
+	Serial             int64   `json:"serial"`         //company wise increase
+	DocNumber          string  `json:"doc_number"`     //foriegn key
+	PaymentMethod      string  `json:"payment_method"` //foreign key
+	PaymentCharge      float64 `json:"payment_charge"` //extra payment fees
+	PaymentFrom        string  `json:"payment_from"`
+	PaymentTrxID       string  `json:"payment_trxid"`
+	ShippingMethod     string  `json:"shipping_method"` //foriegn key == ShippingOption AID
+	ShippingCharge     float64 `json:"shipping_charge"`
+	ShippingAddressAID string  `json:"shipping_address"` //foreign key
+	ShippingStatus     string  `json:"shipping_status"`  //shipped,processing,stuck,delivered
+	ShippingDate       string  `json:"shipping_date"`
+	DeliveryDate       string  `json:"delivery_date"`
+	Remarks            string  `json:"remarks"`
+	Status             int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+
 }
