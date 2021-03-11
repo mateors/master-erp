@@ -587,7 +587,7 @@ type PaymentOption struct {
 	Serial           int64  `json:"serial"` //company wise increase
 	Position         int    `json:"position"`
 	IsDefault        int    `json:"isdefault"`
-	AccountAID       string `json:"account_id"` //foriegn key, provider AccountAID
+	ProviderID       string `json:"account_id"` //foriegn key, payment provider AccountAID
 	OptionName       string `json:"name"`       //foriegn key
 	OptionDetails    string `json:"details"`
 	ChargeApplicable int    `json:"charge_applicable"`
@@ -601,12 +601,11 @@ type PaymentOption struct {
 type ShippingOption struct {
 	ID              string `json:"aid"`
 	Type            string `json:"type"`
-	CompanyID       string `json:"cid"`          //foreign key
-	SupplierID      string `json:"supplier_aid"` //*** contactTable supplier
-	Serial          int64  `json:"serial"`       //company wise increase
+	CompanyID       string `json:"cid"`    //foreign key
+	Serial          int64  `json:"serial"` //company wise increase
 	Position        int    `json:"position"`
 	IsDefault       int    `json:"isdefault"`
-	AccountAID      string `json:"account_id"` //foriegn key, AccountAID
+	SupplierID      string `json:"account_id"` //*** Account Table AID
 	ProviderName    string `json:"name"`       //account_name
 	ProviderDetails string `json:"details"`
 	DeliveryTime    int    `json:"delivery_time"` //'how many days it takes to deliver',
