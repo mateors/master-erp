@@ -637,6 +637,8 @@ type DocPayShipInfo struct {
 	ShippingDate       string  `json:"shipping_date"`
 	DeliveryDate       string  `json:"delivery_date"`
 	Remarks            string  `json:"remarks"`
+	CreateDate         string  `json:"create_date"`
+	UpdateDate         string  `json:"update_date"`
 	Status             int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 
 }
