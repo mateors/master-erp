@@ -510,6 +510,7 @@ type TransactionRecord struct {
 	TrxType        string  `json:"trx_type"`
 	DocNumber      string  `json:"doc_number"` //foriegn key
 	ItemID         string  `json:"item_id"`
+	ItemInfo       string  `json:"item_info"`
 	StockInfo      string  `json:"stock_info"`
 	ProductSerial  string  `json:"item_serial"` //SKU or barcode
 	Quantity       int     `json:"quantity"`
