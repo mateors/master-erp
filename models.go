@@ -571,12 +571,15 @@ type ShippingAddress struct {
 	DocNumber        string `json:"doc_number"` //foriegn key
 	ReciverFirstName string `json:"first_name"`
 	ReciverLastName  string `json:"last_name"`
+	CompanyName      string `json:"company_name"`
 	Phone            string `json:"phone"`
 	Email            string `json:"email"`
-	City             string `json:"city"`
-	ZipCode          string `json:"zip"`
 	Address1         string `json:"address1"`
 	Address2         string `json:"address2"`
+	City             string `json:"city"`
+	ZipCode          string `json:"zip"`
+	Country          string `json:"country_name"`
+	Remarks          string `json:"remarks"`
 	Status           int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
 
