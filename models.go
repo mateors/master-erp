@@ -630,6 +630,7 @@ type DocPayShipInfo struct {
 	PaymentCharge      float64 `json:"payment_charge"` //extra payment fees
 	PaymentFrom        string  `json:"payment_from"`
 	PaymentTrxID       string  `json:"payment_trxid"`
+	ReceiptURL         string  `json:"receipt_url"`
 	ShippingMethod     string  `json:"shipping_method"` //foriegn key == ShippingOption AID
 	ShippingCharge     float64 `json:"shipping_charge"`
 	ShippingAddressAID string  `json:"shipping_address"` //foreign key
