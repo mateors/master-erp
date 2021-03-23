@@ -603,20 +603,20 @@ type PaymentOption struct {
 
 //ShippingOption ...
 type ShippingOption struct {
-	ID              string `json:"aid"`
-	Type            string `json:"type"`
-	CompanyID       string `json:"cid"`    //foreign key
-	Serial          int64  `json:"serial"` //company wise increase
-	Position        int    `json:"position"`
-	IsDefault       int    `json:"isdefault"`
-	SupplierID      string `json:"account_id"` //*** Account Table AID
-	ProviderName    string `json:"name"`       //account_name
-	ProviderDetails string `json:"details"`
-	DeliveryTime    int    `json:"delivery_time"` //'how many days it takes to deliver',
-	ChargeAmount    string `json:"charge_amount"` //Shhipping charge == 'handling fees',
-	LedgerNumber    string `json:"ledger"`        //*** ledger AccountHead
-	Remarks         string `json:"remarks"`
-	Status          int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+	ID              string  `json:"aid"`
+	Type            string  `json:"type"`
+	CompanyID       string  `json:"cid"`    //foreign key
+	Serial          int64   `json:"serial"` //company wise increase
+	Position        int     `json:"position"`
+	IsDefault       int     `json:"isdefault"`
+	SupplierID      string  `json:"account_id"` //*** Account Table AID
+	ProviderName    string  `json:"name"`       //account_name
+	ProviderDetails string  `json:"details"`
+	DeliveryTime    int     `json:"delivery_time"` //'how many days it takes to deliver',
+	ChargeAmount    float64 `json:"charge_amount"` //Shhipping charge == 'handling fees',
+	LedgerNumber    string  `json:"ledger"`        //*** ledger AccountHead
+	Remarks         string  `json:"remarks"`
+	Status          int     `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
 
 //DocPayShipInfo ...
