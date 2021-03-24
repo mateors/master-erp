@@ -578,7 +578,7 @@ type ShippingAddress struct {
 	Address2         string `json:"address2"`
 	City             string `json:"city"`
 	ZipCode          string `json:"zip"`
-	Country          string `json:"country_name"`
+	Country          string `json:"country"` //foreign key
 	Remarks          string `json:"remarks"`
 	Status           int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
