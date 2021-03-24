@@ -249,23 +249,26 @@ type AccountGroup struct {
 	Status          int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
 }
 
-//AccountHead accountLedger
+//AccountHead achead
 type AccountHead struct {
-	ID                   string  `json:"aid"`           //unique id
+	ID                   string  `json:"aid"`           //unique id*
 	Type                 string  `json:"type"`          //table
 	CompanyID            string  `json:"cid"`           //foreign key
-	Serial               int64   `json:"serial"`        //company wise increase
-	AccountGroupID       string  `json:"account_group"` //foreign key AccountGroup
-	Name                 string  `json:"name"`          //ledger name
-	Description          string  `json:"description"`   //
-	AcIdentifier         string  `json:"acidentifier"`  //for ensuring no ledgers are duplicate
-	LedgerCode           string  `json:"ledger"`        //ledger number
-	CurrentBalance       float64 `json:"balance"`       //ledger balance
-	CurrentBalanceType   string  `json:"baltype"`       //ledger balance type Dr or Cr
-	Restricted           int     `json:"restricted"`    //1=Yes, No=0
-	CostCenterApplicable int     `json:"cost_center"`   //1=Yes, No=0
-	CreateDate           string  `json:"create_date"`   //insert date
-	Status               int     `json:"status"`        //0=Inactive, 1=Active, 9=Deleted
+	Serial               int64   `json:"serial"`        //company wise increase *
+	AccountGroup         string  `json:"account_group"` //*AccountGroup= Asset|Liability|Equity|Revenue|Expense
+	AccountType          string  `json:"account_type"`  //* group|head
+	Name                 string  `json:"name"`          //ledger name *
+	Description          string  `json:"description"`   //*
+	Identifier           string  `json:"identifier"`    //* for ensuring no ledgers are duplicate
+	LedgerCode           string  `json:"code"`          //ledger number *
+	ParentID             string  `json:"parent_id"`     //parent account *
+	CurrentBalance       float64 `json:"balance"`       //ledger balance *
+	CurrentBalanceType   string  `json:"baltype"`       //ledger balance type Dr or Cr *
+	Restricted           int     `json:"restricted"`    //1=Yes, No=0 *
+	CostCenterApplicable int     `json:"cost_center"`   //1=Yes, No=0 *
+	Remarks              string  `json:"remarks"`       //*
+	CreateDate           string  `json:"create_date"`   //insert date *
+	Status               int     `json:"status"`        //0=Inactive, 1=Active, 9=Deleted *
 }
 
 //Warehouse table xlsx file 07
