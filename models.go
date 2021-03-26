@@ -233,23 +233,23 @@ type VisitorSession struct {
 }
 
 //AccountGroup ..
-type AccountGroup struct {
-	ID              string `json:"aid"`
-	Type            string `json:"type"`
-	CompanyID       string `json:"cid"`             //foreign key
-	Serial          int64  `json:"serial"`          //company wise increase
-	Name            string `json:"name"`            //Group Name
-	Code            string `json:"code"`            //group code
-	ParentID        string `json:"parent_id"`       //Group Under same table foreign relation
-	Restricted      int    `json:"restricted"`      //Yes, No
-	GroupType       string `json:"group_type"`      //Asset | Liability | Equity | Revenue | Expense
-	Remarks         string `json:"remarks"`         //remarks preveius software code
-	GroupIdentifier string `json:"groupidentifier"` //for generating formula
-	CreateDate      string `json:"create_date"`
-	Status          int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
-}
+// type AccountGroup struct {
+// 	ID              string `json:"aid"`
+// 	Type            string `json:"type"`
+// 	CompanyID       string `json:"cid"`             //foreign key
+// 	Serial          int64  `json:"serial"`          //company wise increase
+// 	Name            string `json:"name"`            //Group Name
+// 	Code            string `json:"code"`            //group code
+// 	ParentID        string `json:"parent_id"`       //Group Under same table foreign relation
+// 	Restricted      int    `json:"restricted"`      //Yes, No
+// 	GroupType       string `json:"group_type"`      //Asset | Liability | Equity | Revenue | Expense
+// 	Remarks         string `json:"remarks"`         //remarks preveius software code
+// 	GroupIdentifier string `json:"groupidentifier"` //for generating formula
+// 	CreateDate      string `json:"create_date"`
+// 	Status          int    `json:"status"` //0=Inactive, 1=Active, 9=Deleted
+// }
 
-//AccountHead achead
+//AccountHead+AccountGroup merged into achead
 type AccountHead struct {
 	ID                   string  `json:"aid"`           //unique id*
 	Type                 string  `json:"type"`          //table
