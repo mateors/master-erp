@@ -556,6 +556,7 @@ type LedgerTransaction struct {
 	DocNumber    string  `json:"doc_number"`   //foriegn key
 	VoucherName  string  `json:"voucher_name"` //
 	LedgerNumber string  `json:"ledger"`       //ledger code on AccountHeader
+	LedgerName   string  `json:"ledger_name"`
 	Description  string  `json:"description"`
 	Debit        float64 `json:"debit"`
 	Credit       float64 `json:"credit"`
