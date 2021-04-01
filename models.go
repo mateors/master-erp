@@ -372,7 +372,7 @@ type Item struct {
 	SalesAccount                string  `json:"sales_account"`                  //AccountHead = ledger number
 	OpeningBalanceEquityAccount string  `json:"opening_balance_equity_account"` //AccountHead = ledger number
 	VatID                       string  `json:"tax_id"`                         //foreign key
-	VatPercent                  string  `json:"vat"`                            //vat percent
+	VatPercent                  float64 `json:"vat"`                            //vat percent
 	BuyPrice                    float64 `json:"buy_price"`                      //cost price, Trade Price
 	SalePrice                   float64 `json:"sale_price"`                     //MRP
 	Tags                        string  `json:"tags,omitempty"`                 //?? department
