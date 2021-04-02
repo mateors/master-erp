@@ -376,7 +376,7 @@ type Item struct {
 	BuyPrice                    float64 `json:"buy_price"`                      //cost price, Trade Price
 	SalePrice                   float64 `json:"sale_price"`                     //MRP
 	Tags                        string  `json:"tags,omitempty"`                 //?? department
-	Supplier                    string  `json:"supplier,omitempty"`             //Account*account_type = supplier
+	SupplierID                  string  `json:"supplier,omitempty"`             //AccountTableID*account_type = supplier
 	UnitOfMeasure               string  `json:"uom,omitempty"`
 	TrackingBy                  string  `json:"tracking"` //tracking by unique_serial, lot_number, no_tracking
 	ReorderLevel                int64   `json:"reorder_level"`
