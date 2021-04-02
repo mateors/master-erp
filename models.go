@@ -257,7 +257,7 @@ type AccountHead struct {
 	AccountGroup         string  `json:"account_group"` //*AccountGroup= Asset|Liability|Equity|Revenue|Expense
 	AccountType          string  `json:"account_type"`  //* group|head
 	Name                 string  `json:"name"`          //ledger name *
-	Description          string  `json:"description"`   //*
+	Description          string  `json:"description"`   //*ledger_details
 	Identifier           string  `json:"identifier"`    //* for ensuring no ledgers are duplicate
 	LedgerCode           string  `json:"code"`          //ledger number *
 	ParentID             string  `json:"parent_id"`     //parent account *
