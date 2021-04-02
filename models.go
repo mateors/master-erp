@@ -367,9 +367,9 @@ type Item struct {
 	ItemLine                    string  `json:"item_line,omitempty"` //*** put extra to avoid complexity in join
 	ItemImage                   string  `json:"item_image"`
 	Barcode                     string  `json:"barcode"`
-	AssetAccount                string  `json:"asset_account"`                  //AccountHead = ledger number
-	COGSAccount                 string  `json:"cogs_account"`                   //AccountHead = ledger number
-	SalesAccount                string  `json:"sales_account"`                  //AccountHead = ledger number
+	InventoryAccount            string  `json:"inventory_account"`              //Asset / inventory ledger
+	COGSAccount                 string  `json:"cogs_account"`                   //Expense = ledger number
+	SalesAccount                string  `json:"sales_account"`                  //Income = ledger number
 	OpeningBalanceEquityAccount string  `json:"opening_balance_equity_account"` //AccountHead = ledger number
 	VatID                       string  `json:"tax_id"`                         //foreign key
 	VatPercent                  float64 `json:"vat"`                            //vat percent
