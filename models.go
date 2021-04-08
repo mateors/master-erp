@@ -49,15 +49,16 @@ type Account struct {
 
 //CustomField ...
 type CustomField struct {
-	ID        string `json:"aid"`
-	Type      string `json:"type"` //account
-	CompanyID string `json:"cid"`  //foreign key
-	Serial    int64  `json:"serial"`
-	AccountID string `json:"account_id"`
-	Owner     string `json:"owner"`    //account
-	FieldID   string `json:"field_id"` //extra
-	FieldName string `json:"field_name"`
-	Status    int    `json:"status"`
+	ID         string `json:"aid"`
+	Type       string `json:"type"` //account
+	CompanyID  string `json:"cid"`  //foreign key
+	Serial     int64  `json:"serial"`
+	AccountID  string `json:"account_id"`
+	Owner      string `json:"owner"`    //account
+	FieldID    string `json:"field_id"` //extra
+	FieldLabel string `json:"field_label"`
+	FieldName  string `json:"field_name"`
+	Status     int    `json:"status"`
 }
 
 //CustomFieldValue ...
