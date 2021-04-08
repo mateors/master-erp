@@ -32,6 +32,7 @@ type Account struct {
 	RateplanID  string `json:"rateplan_id,omitempty"` //if topup client
 	AccountType string `json:"account_type"`          //vendor,goods_supplier,customer,consumer,payment_provider,shipping_provider
 	AccountName string `json:"account_name"`          //supplier business name or username
+	CustomID    string `json:"customid"`              //unique customer IDENTIFICATION
 	Code        string `json:"code"`                  //supplier or customer code
 	LoginID     string `json:"login_id"`              //foreign key
 	FirstName   string `json:"first_name,omitempty"`
