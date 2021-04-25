@@ -82,7 +82,8 @@ type Login struct {
 	AccessID   string `json:"access_id"`   //foreign key
 	AccessName string `json:"access_name"` //customer type
 	UserName   string `json:"username"`    //email or mobile as username
-	Password   string `json:"passw"`
+	Password   string `json:"passw"`       //password
+	Pincode    string `json:"pincode"`     //pincode
 	CreateDate string `json:"create_date"`
 	LastLogin  string `json:"last_login,omitempty"`
 	Status     int    `json:"status"`
@@ -312,6 +313,7 @@ type Tax struct {
 }
 
 //Department itemDepartment -> ItemLine or department are same just one under another
+//TableMap::-> Deprtment & ItemLine
 type Department struct {
 	ID          string `json:"aid"`
 	Type        string `json:"type"`
@@ -326,6 +328,7 @@ type Department struct {
 }
 
 //Category or ItemCategory/ItemGroup keeps product group/category info
+//TableMap::-> ItemGroup
 type Category struct {
 	ID            string `json:"aid"`
 	Type          string `json:"type"`
